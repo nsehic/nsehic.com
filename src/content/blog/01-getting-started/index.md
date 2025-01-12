@@ -6,12 +6,12 @@ date: "Mar 22 2024"
 
 The basic configuration of Nano is pretty simple.
 
-Edit `src/consts.ts`
+Edit `src/config.ts`
 
 Customize the base site
 
 ```ts 
-// src/consts.ts
+// src/config.ts
 
 export const SITE: Site = {
   NAME: "Astro Nano",
@@ -33,7 +33,7 @@ export const SITE: Site = {
 Customize your page metadata
 
 ```ts 
-// src/consts.ts
+// src/config.ts
 
 export const HOME: Metadata = {
   TITLE: "Home",
@@ -49,7 +49,7 @@ export const HOME: Metadata = {
 Customize your social media
 
 ```ts 
-// src/consts.ts
+// src/config.ts
 
 export const SOCIALS: Socials = [
   { 

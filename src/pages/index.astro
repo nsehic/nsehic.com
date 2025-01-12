@@ -5,24 +5,24 @@ import PageLayout from "@layouts/PageLayout.astro";
 import ArrowCard from "@components/ArrowCard.astro";
 import Link from "@components/Link.astro";
 import { dateRange } from "@lib/utils";
-import { SITE, HOME, SOCIALS } from "@consts";
+import * as config from '@config';
 
 const blog = (await getCollection("blog"))
   .filter(post => !post.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0,SITE.NUM_POSTS_ON_HOMEPAGE);
+  .slice(0,config.site.numPostsOnHomepage);
 
 const projects = (await getCollection("projects"))
   .filter(project => !project.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0,SITE.NUM_PROJECTS_ON_HOMEPAGE);
+  .slice(0,config.site.numProjectsOnHomepage);
 
-const allwork = (await getCollection("work"))
+const allWork = (await getCollection("work"))
   .sort((a, b) => new Date(b.data.dateStart).valueOf() - new Date(a.data.dateStart).valueOf())
-  .slice(0,SITE.NUM_WORKS_ON_HOMEPAGE);
+  .slice(0,config.site.numWorksOnHomepage);
 
 const work = await Promise.all(
-  allwork.map(async (item) => {
+  allWork.map(async (item) => {
     const { Content } = await item.render();
     return { ...item, Content };
   })
@@ -30,7 +30,7 @@ const work = await Promise.all(
 
 ---
 
-<PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
+<PageLayout title={config.home.title} description={config.home.description}>
   <Container>
     <h4 class="animate font-semibold text-black dark:text-white">
       Hi, I'm Nano <span class="text-xl">👋🏻</span> 
@@ -45,7 +45,7 @@ const work = await Promise.all(
               Astro Sphere
             </Link>.
             I have a lighthouse scores of 100 across the board for performance, 
-            accesibility, best practices and SEO.
+            accessibility, best practices and SEO.
           </p>
           <p class="animate">
             I come packed with full type safety, a sitemap, an rss feed, markdown 
@@ -139,17 +139,17 @@ const work = await Promise.all(
           </p>
         </article>
         <ul class="flex flex-wrap gap-2">
-          {SOCIALS.map(SOCIAL => (
+          {config.socials.map(social => (
             <li class="flex gap-x-2 text-nowrap">
-              <Link href={SOCIAL.HREF} external aria-label={`${SITE.NAME} on ${SOCIAL.NAME}`}>
-                {SOCIAL.NAME}
+              <Link href={social.href} external aria-label={`${config.site.name} on ${social.name}`}>
+                {social.name}
               </Link>
               {"/"}
             </li>
           ))}
           <li class="line-clamp-1">
-            <Link href={`mailto:${SITE.EMAIL}`} aria-label={`Email ${SITE.NAME}`}>
-              {SITE.EMAIL}
+            <Link href={`mailto:${config.site.email}`} aria-label={`Email ${config.site.name}`}>
+              {config.site.email}
             </Link>
           </li>
         </ul>
