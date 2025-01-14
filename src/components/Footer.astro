@@ -3,7 +3,7 @@ import Container from "@components/Container.astro";
 import BackToTop from "@components/BackToTop.astro";
 import config from "@config";
 
-const year = new Date().getFullYear();
+const copy = `© ${new Date().getFullYear()} | ${config.site.name}`;
 ---
 
 <footer class="animate">
@@ -15,9 +15,7 @@ const year = new Date().getFullYear();
     </div>
     <div class="flex justify-between items-center">
       <div>
-        &copy; {year}
-        {`|`}
-        {config.site.name}
+        {copy}
       </div>
       <div class="flex flex-wrap gap-1 items-center">
         <button

@@ -6,7 +6,7 @@ const blog = defineCollection({
     title: z.string(),
     description: z.string(),
     date: z.coerce.date(),
-    draft: z.boolean().optional()
+    draft: z.boolean().optional(),
   }),
 });
 
@@ -15,8 +15,8 @@ const work = defineCollection({
   schema: z.object({
     company: z.string(),
     role: z.string(),
-    dateStart: z.coerce.date(),
-    dateEnd: z.union([z.coerce.date(), z.string()]),
+    startDate: z.coerce.date(),
+    endDate: z.coerce.date().optional(),
   }),
 });
 
@@ -28,7 +28,7 @@ const projects = defineCollection({
     date: z.coerce.date(),
     draft: z.boolean().optional(),
     demoURL: z.string().optional(),
-    repoURL: z.string().optional()
+    repoURL: z.string().optional(),
   }),
 });
 
