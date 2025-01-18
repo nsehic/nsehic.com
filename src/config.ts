@@ -9,7 +9,7 @@ export default {
   site: {
     name: "Nermin Sehic",
     email: "sehicnermin97@gmail.com",
-    image: "/nano.png",
+    image: "/og-image.png",
   },
   meta: {
     home: {
