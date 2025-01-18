@@ -12,7 +12,7 @@ export function calculateReadingTime(html: string): string {
   return `${readingTimeMinutes} min read`;
 }
 
-export function dateRange(start: Date, end?: Date): string {
+export function formatDateRange(start: Date, end?: Date): string {
   const startMonth = start.toLocaleString("default", { month: "short" });
   const startYear = start.getFullYear().toString();
 
