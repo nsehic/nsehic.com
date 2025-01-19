@@ -45,34 +45,36 @@ const publishedWork = await Promise.all(
     <div class="space-y-16">
       <section>
         <article class="space-y-4">
-          <p class="animate">Paragraph 1</p>
-          <p class="animate">Paragraph 2</p>
-          <p class="animate">Paragraph 3</p>
+          <p class="animate">
+            I'm a software engineer with a passion for web development and cloud
+            infrastructure. I'm currently employed at Rendr where I'm building
+            out the internal tools and automations.
+          </p>
+          <p class="animate">
+            I'm a traditional full stack engineer with skills covering frontend,
+            backend and infrastructure. I love to build tools to help teams and
+            individuals be more productive.
+          </p>
+          <p class="animate">
+            I'm a <Link
+              external={true}
+              href="https://www.credly.com/badges/1db45e8a-5ba4-4a4b-b931-7793fa5062a8"
+              >Google Cloud Certificate - Associate Cloud Engineer</Link
+            > and I'm currently working towards my professional cloud developer certification.
+          </p>
+          <p class="animate">
+            Passionate about leveraging Go to build scalable applications, I
+            deploy projects to Google Cloud for robust and reliable performance.
+            I also utilise Terraform for Infrastructure as Code, ensuring
+            efficient, repeatable, and maintainable infrastructure management.
+          </p>
         </article>
       </section>
 
       <section class="animate space-y-6">
         <div class="flex flex-wrap gap-y-2 items-center justify-between">
-          <h5 class="font-semibold text-black dark:text-white">Latest posts</h5>
-          <Link href="/blog"> See all posts </Link>
-        </div>
-        <ul class="flex flex-col gap-4">
-          {
-            publishedPosts.map((post) => (
-              <li>
-                <ArrowCard entry={post} />
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-
-      <section class="animate space-y-6">
-        <div class="flex flex-wrap gap-y-2 items-center justify-between">
-          <h5 class="font-semibold text-black dark:text-white">
-            Work Experience
-          </h5>
-          <Link href="/work"> See all work </Link>
+          <h5 class="font-semibold text-black dark:text-white">Work</h5>
+          <Link href="/work">See all work</Link>
         </div>
         <ul class="flex flex-col space-y-4">
           {
@@ -82,9 +84,9 @@ const publishedWork = await Promise.all(
                   {formatDateRange(item.data.startDate, item.data.endDate)}
                 </div>
                 <div class="font-semibold text-black dark:text-white">
-                  {item.data.company}
+                  {item.data.role}
                 </div>
-                <div class="text-sm opacity-75">{item.data.role}</div>
+                <div class="text-sm opacity-75">{item.data.company}</div>
                 <article>
                   <item.Content />
                 </article>
@@ -93,19 +95,31 @@ const publishedWork = await Promise.all(
           }
         </ul>
       </section>
-
       <section class="animate space-y-6">
         <div class="flex flex-wrap gap-y-2 items-center justify-between">
-          <h5 class="font-semibold text-black dark:text-white">
-            Recent projects
-          </h5>
-          <Link href="/projects"> See all projects </Link>
+          <h5 class="font-semibold text-black dark:text-white">Projects</h5>
+          <Link href="/projects">See all projects</Link>
         </div>
         <ul class="flex flex-col gap-4">
           {
             publishedProjects.map((project) => (
               <li>
                 <ArrowCard entry={project} />
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+      <section class="animate space-y-6">
+        <div class="flex flex-wrap gap-y-2 items-center justify-between">
+          <h5 class="font-semibold text-black dark:text-white">Blog Posts</h5>
+          <Link href="/blog">See all posts</Link>
+        </div>
+        <ul class="flex flex-col gap-4">
+          {
+            publishedPosts.map((post) => (
+              <li>
+                <ArrowCard entry={post} />
               </li>
             ))
           }
@@ -131,11 +145,10 @@ const publishedWork = await Promise.all(
                 >
                   {social.name}
                 </Link>
-                {"/"}
               </li>
             ))
           }
-          <li class="line-clamp-1">
+          <li class="flex gap-x-2 text-nowrap">
             <Link
               href={`mailto:${config.site.email}`}
               aria-label={`Email ${config.site.name}`}
