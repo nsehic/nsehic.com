@@ -55,5 +55,5 @@ jobs:
       - id: invalidate-cdn
         name: Invalidate CDN
         run: |
-          URL_MAP=${{ var.URL_MAP }}
+          URL_MAP=${{ vars.URL_MAP }}
           gcloud compute url-maps invalidate-cdn-cache $URL_MAP --path "/*" --host "nsehic.com" --async
