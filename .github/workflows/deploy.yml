@@ -1,0 +1,59 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+      id-token: write
+
+    concurrency:
+      group: deploy-main
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install deps and build
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm build
+
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          project_id: ${{ vars.PROJECT_ID }}
+          workload_identity_provider: ${{ vars.WORKLOAD_IDENTITY_PROVIDER }}
+
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ vars.PROJECT_ID }}
+
+      - id: upload-static
+        name: Upload to GCS bucket
+        run: |
+          BUCKET=${{ vars.GCS_BUCKET }}
+          gcloud storage rsync -r --delete-unmatched-destination-objects dist gs://$BUCKET
+
+      - id: invalidate-cdn
+        name: Invalidate CDN
+        run: |
+          URL_MAP=${{ var.URL_MAP }}
+          gcloud compute url-maps invalidate-cdn-cache $URL_MAP --path "/*" --host "nsehic.com" --async
