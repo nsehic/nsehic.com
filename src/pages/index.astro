@@ -7,24 +7,12 @@ import Link from "@components/Link.astro";
 import { formatDateRange } from "@utils";
 import config from "@config";
 
-const [blog, projects, work] = await Promise.all([
-  getCollection("blog"),
-  getCollection("projects"),
+const [workCollection, projectsCollection] = await Promise.all([
   getCollection("work"),
+  getCollection("projects"),
 ]);
-
-const publishedPosts = blog
-  .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, config.content.homepage.numPosts);
-
-const publishedProjects = projects
-  .filter((project) => !project.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, config.content.homepage.numProjects);
-
-const publishedWork = await Promise.all(
-  work
+const work = await Promise.all(
+  workCollection
     .sort((a, b) => b.data.startDate.valueOf() - a.data.startDate.valueOf())
     .slice(0, config.content.homepage.numWork)
     .map(async (item) => {
@@ -32,6 +20,10 @@ const publishedWork = await Promise.all(
       return { ...item, Content };
     }),
 );
+const projects = projectsCollection
+  .filter((project) => !project.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, config.content.homepage.numProjects);
 ---
 
 <PageLayout
@@ -77,7 +69,7 @@ const publishedWork = await Promise.all(
         </div>
         <ul class="flex flex-col space-y-4">
           {
-            publishedWork.map((item) => (
+            work.map((item) => (
               <li>
                 <div class="text-sm opacity-75">
                   {formatDateRange(item.data.startDate, item.data.endDate)}
@@ -101,7 +93,7 @@ const publishedWork = await Promise.all(
         </div>
         <ul class="flex flex-col gap-4">
           {
-            publishedProjects.map((project) => (
+            projects.map((project) => (
               <li>
                 <ArrowCard entry={project} />
               </li>
@@ -109,22 +101,6 @@ const publishedWork = await Promise.all(
           }
         </ul>
       </section>
-      <section class="animate space-y-6">
-        <div class="flex flex-wrap gap-y-2 items-center justify-between">
-          <h5 class="font-semibold text-black dark:text-white">Blog Posts</h5>
-          <Link href="/blog">See all posts</Link>
-        </div>
-        <ul class="flex flex-col gap-4">
-          {
-            publishedPosts.map((post) => (
-              <li>
-                <ArrowCard entry={post} />
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-
       <section class="animate space-y-4">
         <h5 class="font-semibold text-black dark:text-white">Let's Connect</h5>
         <article>
