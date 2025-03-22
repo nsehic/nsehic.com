@@ -19,11 +19,11 @@ export default {
     },
     projects: {
       title: "Projects",
-      description: "Where I have worked and what I have done.",
+      description: "My personal projects",
     },
     work: {
       title: "Work",
-      description: "Work",
+      description: "Where I have worked and what I have done",
     },
   },
   socials: [
