@@ -17,17 +17,13 @@ export default {
       description:
         "Software Engineer passionate about Cloud infrastructure, web development, and coffee!",
     },
-    blog: {
-      title: "Blog",
-      description: "A collection of articles on topics I am passionate about.",
-    },
     projects: {
       title: "Projects",
-      description: "Where I have worked and what I have done.",
+      description: "My personal projects",
     },
     work: {
       title: "Work",
-      description: "Work",
+      description: "Where I have worked and what I have done",
     },
   },
   socials: [
