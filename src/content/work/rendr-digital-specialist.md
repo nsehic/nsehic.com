@@ -4,4 +4,5 @@ role: Digital Specialist
 startDate: 2021-08-01
 endDate: 2022-08-01
 ---
-- Assisted with **product feed integration, technical support, and eCommerce platform configuration** in a generalist role.
+- Developed data pipelines to ingest, clean, normalise, and enrich product data from merchant systems into the company marketplace.
+- Analysed Algolia search analytics to optimise the search index, improving result relevance for high-impact search terms.
