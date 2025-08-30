@@ -29,7 +29,7 @@ export default {
   socials: [
     {
       name: "github",
-      href: "https://github.com/nermin-io",
+      href: "https://github.com/nsehic",
     },
     {
       name: "linkedin",

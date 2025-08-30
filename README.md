@@ -10,7 +10,7 @@ To get started, make sure you have Node.js and pnpm installed, then clone the re
 
 ### Clone the repository
 ```shell
-git clone https://github.com/nermin-io/nsehic.com.git
+git clone https://github.com/nsehic/nsehic.com.git
 ```
 ### Install dependencies
 ```shell

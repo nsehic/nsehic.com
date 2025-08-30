@@ -4,7 +4,7 @@ description: Itemised is a todo list app that syncs content to your device.
 date: 2023-05-14
 draft: false
 demoURL: https://itemised.vercel.app
-repoURL: https://github.com/nermin-io/itemised
+repoURL: https://github.com/nsehic/itemised
 ---
 
 🚀 Write todos that instantly sync to your device.

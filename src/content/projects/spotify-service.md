@@ -4,7 +4,7 @@ description: A REST API that lets you see what music I'm listening to on Spotify
 date: 2024-12-25
 draft: false
 demoURL: https://spotify.nsehic.com/currently-playing
-repoURL: https://github.com/nermin-io/spotify-service
+repoURL: https://github.com/nsehic/spotify-service
 ---
 
 🎵 What am I listening to on Spotify?
