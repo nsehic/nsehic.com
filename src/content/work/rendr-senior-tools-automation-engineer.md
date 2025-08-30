@@ -2,6 +2,7 @@
 company: Rendr
 role: Senior Tools & Automation Engineer
 startDate: 2024-08-01
+endDate: 2025-08-22
 ---
 - Engineered a Node.js-based invoicing automation service leveraging Xero and BigQuery, streamlining a week-long process into a one-day operation.
 - Led the adoption of Terraform and GitOps workflows, significantly improving provisioning speed and security posture across development teams.
